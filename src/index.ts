@@ -57,7 +57,10 @@ async function main() {
   console.log(`Found workflow_id: ${JSON.stringify(workflow_ids)}`);
   const trigger_repo_id = (payload.workflow_run || current_run).head_repository.id;
   await Promise.all(
-    workflow_ids.map(async workflow_id => {
+    workflow_ids.map(async w_id => {
+      const workflow_id = !Number.isNaN(Number(w_id))
+        ? Number(w_id)
+        : w_id;
       try {
         const {
           data: { total_count, workflow_runs },
