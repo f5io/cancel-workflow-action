@@ -8594,12 +8594,12 @@ async function main() {
     await Promise.all(workflow_ids.map(async (w_id) => {
         const workflow_id = !Number.isNaN(Number(w_id)) ? Number(w_id) : w_id;
         try {
-            const result = await octokit.rest.actions.listWorkflowRuns({
-                per_page: 100,
+            const result = await octokit.rest.actions.listWorkflowRunsForRepo({
                 owner,
                 repo,
                 workflow_id,
                 branch,
+                status: 'in_progress',
             });
             console.log(result);
             const { data: { total_count, workflow_runs }, } = result;
