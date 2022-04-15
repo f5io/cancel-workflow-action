@@ -62,9 +62,7 @@ async function main() {
         ? Number(w_id)
         : w_id;
       try {
-        const {
-          data: { total_count, workflow_runs },
-        } = await octokit.rest.actions.listWorkflowRuns({
+        const result =  await octokit.rest.actions.listWorkflowRuns({
           per_page: 100,
           owner,
           repo,
@@ -72,6 +70,10 @@ async function main() {
           workflow_id,
           branch,
         });
+        console.log(result);
+        const {
+          data: { total_count, workflow_runs },
+        } = result;
         console.log(`Found ${total_count} runs total.`);
         let cancelBefore = new Date(current_run.created_at);
         if (all_but_latest) {
