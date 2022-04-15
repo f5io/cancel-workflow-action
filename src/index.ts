@@ -58,11 +58,9 @@ async function main() {
   const trigger_repo_id = (payload.workflow_run || current_run).head_repository.id;
   await Promise.all(
     workflow_ids.map(async w_id => {
-      const workflow_id = !Number.isNaN(Number(w_id))
-        ? Number(w_id)
-        : w_id;
+      const workflow_id = !Number.isNaN(Number(w_id)) ? Number(w_id) : w_id;
       try {
-        const result =  await octokit.rest.actions.listWorkflowRuns({
+        const result = await octokit.rest.actions.listWorkflowRuns({
           per_page: 100,
           owner,
           repo,
