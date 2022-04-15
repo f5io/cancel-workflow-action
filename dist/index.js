@@ -8597,9 +8597,6 @@ async function main() {
             const result = await octokit.rest.actions.listWorkflowRunsForRepo({
                 owner,
                 repo,
-                workflow_id,
-                branch,
-                status: 'in_progress',
             });
             console.log(result);
             const { data: { total_count, workflow_runs }, } = result;

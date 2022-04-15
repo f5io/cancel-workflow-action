@@ -64,9 +64,9 @@ async function main() {
           owner,
           repo,
           // @ts-ignore
-          workflow_id,
-          branch,
-          status: 'in_progress',
+          //workflow_id,
+          //branch,
+          //status: 'in_progress',
         });
         console.log(result);
         const {
